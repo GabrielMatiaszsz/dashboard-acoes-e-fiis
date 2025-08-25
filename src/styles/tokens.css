@@ -1,0 +1,55 @@
+:root {
+  /* Paleta base */
+  --primary: #4f46e5; /* pode ser atualizado pelo seu ThemeProvider */
+  --primary-600: #4f46e5;
+  --primary-500: #6366f1;
+  --primary-400: #818cf8;
+  --accent: #22c55e;
+
+  /* Light */
+  --bg: #f7f8fb;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --muted-2: #9ca3af;
+
+  /* Estados */
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger:  #ef4444;
+  --info:    #0ea5e9;
+
+  /* Layout & estética */
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.06), 0 1px 8px rgba(0,0,0,.04);
+  --shadow-2: 0 6px 18px rgba(0,0,0,.08);
+  --ring: 0 0 0 3px color-mix(in oklab, var(--primary) 20%, transparent);
+
+  /* Tipografia */
+  --font-ui: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+
+  /* Gráficos */
+  --chart-grid: color-mix(in oklab, var(--text) 12%, transparent);
+}
+
+/* Tema escuro */
+:root[data-theme="dark"] {
+  --bg: #0b0d12;
+  --surface: #0f1115;
+  --border: #1e2530;
+  --text: #e8e8ea;
+  --muted: #a3a7b3;
+  --muted-2: #84899a;
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,.4), 0 1px 8px rgba(0,0,0,.25);
+  --shadow-2: 0 10px 24px rgba(0,0,0,.35);
+}
+
+/* Preferência do SO: dark por padrão para quem usa escuro */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+  }
+}

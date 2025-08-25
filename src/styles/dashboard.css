@@ -1,0 +1,270 @@
+:root{
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --muted: #8b91a1;
+  --text: #000000;
+  --primary: #6ea8fe;
+  --border: #a1a0a0;
+  --radius: 16px;
+  --shadow: 0 8px 20px rgba(0,0,0,.18); /* sombra mais leve */
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+/* Backdrop do overlay: transparente por padrão */
+.rico-theme .drawer-backdrop { background: transparent; transition: background .2s ease; }
+/* Escurece somente quando o drawer estiver ABERTO (classe aplicada pelo componente do Drawer) */
+.rico-theme.is-drawer-open .drawer-backdrop { background: rgba(3, 5, 20, 0.6); }
+
+/* Garantia: nunca aplicar blur no dashboard/painéis */
+.rico-theme .panel,
+.rico-theme .dash,
+.rico-theme .panel__body {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+}
+
+.dash{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dash__header{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: end;
+}
+
+.dash__title h1{
+  margin: 0 0 4px 0;
+  font-size: 1.6rem;
+  letter-spacing: .2px;
+}
+.dash__title p{
+  margin: 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.dash__actions{
+  display: flex; align-items: center; justify-content: flex-end; gap: 12px;
+}
+
+/* Segmented */
+.segmented{
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  padding: 6px;
+  display: flex;
+  gap: 6px;
+  box-shadow: var(--shadow);
+}
+
+.segmented__btn{
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  padding: 10px 14px;
+  font-size: .95rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: .18s ease;
+}
+
+.segmented__btn:hover{
+  background: rgba(255,255,255,.06);
+}
+
+.segmented__btn.is-active{
+  color: var(--text);
+  background: rgba(255,255,255,.08);   /* ★ sem gradiente, sem outline */
+  border-color: var(--border);
+  outline: none;                        /* ★ remove brilho/halo */
+}
+
+/* Layout principal */
+.dash__content{
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+/* Painel — ★ sem gradiente que “vela” a área */
+.panel{
+  background: var(--panel);             /* ★ fundo sólido */
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: clip;
+}
+
+.panel__head{
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 8px 16px;
+}
+.panel__head h2{
+  margin: 0; font-size: 1.1rem; font-weight: 600;
+}
+
+.badge{
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 4px 10px; font-size: .75rem; color: var(--primary);
+  
+  background: rgba(110,168,254,.12);
+  border: 1px solid rgba(110,168,254,.25);
+  border-radius: 999px;
+}
+
+.panel__body{
+  padding: 8px 8px 14px 8px;
+}
+
+/* Tooltip do Recharts (ou libs com tooltip HTML) */
+.rico-theme .recharts-default-tooltip {
+  background: var(--panel-2) !important;   /* azul escuro */
+  border: 1px solid var(--border) !important;
+  color: #fff !important;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 8px 10px;
+}
+.rico-theme .recharts-tooltip-label,
+.rico-theme .recharts-tooltip-item {
+  color: #fff !important;
+}
+
+/* Eixos/grades do gráfico (mais legibilidade no tema escuro) */
+.rico-theme .recharts-cartesian-axis-tick-value tspan { fill: var(--text) !important; }
+.rico-theme .recharts-cartesian-grid line { stroke: rgba(255,255,255,.12) !important; }
+.rico-theme .recharts-cartesian-axis line,
+.rico-theme .recharts-cartesian-axis .recharts-cartesian-axis-line {
+  stroke: rgba(255,255,255,.18) !important;
+}
+
+/* ===== Cor clara padrão para todos os gráficos (Recharts) ===== */
+:root {
+  --chart-accent: #7EC8FF; /* azul claro; troque se quiser outro tom */
+}
+
+/* Linhas + pontos da linha */
+.rico-theme .recharts-line .recharts-line-curve {
+  stroke: var(--chart-accent) !important;
+  stroke-width: 2.5px !important;
+}
+.rico-theme .recharts-line .recharts-line-dots circle,
+.rico-theme .recharts-line .recharts-line-dot {
+  fill: var(--chart-accent) !important;
+  stroke: var(--chart-accent) !important;
+}
+
+/* Barras */
+.rico-theme .recharts-bar-rectangle path {
+  fill: var(--chart-accent) !important;
+  fill-opacity: .95 !important;
+}
+
+/* Pontos do scatter */
+.rico-theme .recharts-scatter-symbol path,
+.rico-theme .recharts-scatter-symbol circle {
+  fill: var(--chart-accent) !important;
+  stroke: var(--chart-accent) !important;
+}
+
+/* (se usar legenda, deixa o marcador na mesma cor) */
+.rico-theme .recharts-default-legend .recharts-legend-icon {
+  fill: var(--chart-accent) !important;
+  stroke: var(--chart-accent) !important;
+}
+
+/* =========================
+   RESPONSIVIDADE (mobile-first)
+   ========================= */
+
+/* Filtros: deixam quebrar linha quando faltar espaço */
+.segmented {
+  flex-wrap: nowrap;
+}
+@media (max-width: 1024px) {
+  .dash__header {
+    grid-template-columns: 1fr; /* título em cima, filtros embaixo */
+    gap: 12px;
+  }
+  .dash__actions {
+    justify-content: stretch;
+  }
+  .segmented {
+    flex-wrap: wrap;          /* quebra itens em múltiplas linhas */
+    gap: 8px;
+    width: 100%;
+  }
+  /* Os itens dentro dos filtros ganham flex e ocupam bem o espaço */
+  .segmented > * {
+    flex: 1 1 160px;          /* cresce e quebra com ~160px mínimo */
+    min-width: 140px;
+  }
+  .segmented .segmented__btn {
+    white-space: nowrap;      /* evita quebra feia em botões */
+  }
+}
+
+/* Conteúdo: 1 coluna no mobile; 2 colunas no desktop */
+.dash__content {
+  grid-template-columns: 1fr;  /* mobile */
+}
+@media (min-width: 981px) {
+  .dash__content {
+    grid-template-columns: 1fr 360px; /* desktop: gráfico + aside */
+  }
+}
+
+/* Painéis (reduz medidas no mobile) */
+@media (max-width: 640px) {
+  .dash {
+    padding: 16px 12px 24px;
+    gap: 16px;
+  }
+  .panel { border-radius: 12px; }
+  .panel__head { padding: 12px; }
+  .panel__body { padding: 8px; }
+
+  .dash__title h1 { font-size: 1.35rem; }
+  .badge { font-size: .7rem; padding: 3px 8px; }
+
+  .segmented { gap: 6px; padding: 8px; }
+  .segmented .segmented__btn { padding: 10px 12px; font-size: .92rem; }
+}
+
+/* Tabelas: melhor leitura e rolagem horizontal quando preciso */
+.rico-theme .panel__body { overflow-x: auto; }
+@media (max-width: 640px) {
+  .rico-theme table { font-size: 13px; min-width: 640px; }
+  .rico-theme th, .rico-theme td { padding: 8px 10px; }
+}
+
+/* Drawer: ocupar a tela toda no mobile */
+@media (max-width: 640px) {
+  .rico-theme .drawer {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Ajustes finos para telas muito pequenas */
+@media (max-width: 380px) {
+  .segmented { gap: 4px; }
+  .segmented .segmented__btn { padding: 8px 10px; font-size: .9rem; }
+}

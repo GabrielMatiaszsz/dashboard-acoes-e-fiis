@@ -1,0 +1,107 @@
+/* BOTÕES */
+.btn {
+  appearance: none; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text);
+  border-radius: var(--radius-sm); padding: 10px 14px;
+  font-weight: 600; cursor: pointer;
+  transition: transform .04s ease, background .15s ease, border-color .15s;
+  box-shadow: var(--shadow-1);
+}
+.btn:hover { background: color-mix(in oklab, var(--surface) 80%, var(--text) 5%); }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: none; box-shadow: var(--ring); }
+
+.btn-primary {
+  border-color: color-mix(in oklab, var(--primary) 50%, var(--border));
+  background: var(--primary);
+  color: white;
+}
+.btn-primary:hover { background: var(--primary-500); }
+.btn-primary:active { background: var(--primary-600); }
+
+/* INPUTS & SELECTS */
+.input, .select, .textarea {
+  width: 100%;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  transition: border-color .15s ease, box-shadow .15s ease, background .2s ease;
+}
+.input::placeholder { color: var(--muted-2); }
+.input:focus, .select:focus, .textarea:focus {
+  outline: none; border-color: color-mix(in oklab, var(--primary) 50%, var(--border));
+  box-shadow: var(--ring);
+}
+
+/* CHECKBOX / SWITCH simples */
+.checkbox { width: 16px; height: 16px; accent-color: var(--primary); }
+
+/* TOOLBAR */
+.toolbar {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: end;
+}
+.toolbar .group { display: flex; flex-direction: column; gap: 6px; min-width: 160px; }
+.label { font-size: 12px; color: var(--muted); }
+
+/* BADGES */
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600;
+  border: 1px solid var(--border); background: var(--surface);
+}
+.badge.ok { color: var(--success); border-color: color-mix(in oklab, var(--success) 40%, var(--border)); }
+.badge.warn { color: var(--warning); border-color: color-mix(in oklab, var(--warning) 40%, var(--border)); }
+.badge.info { color: var(--info); border-color: color-mix(in oklab, var(--info) 40%, var(--border)); }
+.badge.danger{ color: var(--danger); border-color: color-mix(in oklab, var(--danger) 40%, var(--border)); }
+
+/* ALERTS */
+.alert {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 12px 14px; background: var(--surface); box-shadow: var(--shadow-1);
+}
+.alert.ok    { border-color: color-mix(in oklab, var(--success) 40%, var(--border)); }
+.alert.warn  { border-color: color-mix(in oklab, var(--warning) 40%, var(--border)); }
+.alert.info  { border-color: color-mix(in oklab, var(--info) 40%, var(--border)); }
+.alert.error { border-color: color-mix(in oklab, var(--danger) 40%, var(--border)); }
+
+/* TABELA */
+.table {
+  width: 100%; border-collapse: collapse; overflow: hidden;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); box-shadow: var(--shadow-1);
+}
+.table th, .table td {
+  padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+}
+.table thead th { font-weight: 700; color: var(--muted); background: color-mix(in oklab, var(--surface) 90%, var(--text) 4%); }
+.table tbody tr:hover { background: color-mix(in oklab, var(--surface) 92%, var(--text) 4%); }
+
+/* SKELETONS */
+.skeleton {
+  display: block; width: 100%; height: 1rem;
+  border-radius: 8px;
+  background: linear-gradient(90deg,
+    color-mix(in oklab, var(--surface) 92%, var(--text) 6%) 25%,
+    color-mix(in oklab, var(--surface) 86%, var(--text) 10%) 37%,
+    color-mix(in oklab, var(--surface) 92%, var(--text) 6%) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-shine 1.2s ease-in-out infinite;
+}
+@keyframes skeleton-shine { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+
+/* LAYOUT DE CARDS USADOS NO DASH */
+.cards {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(1, minmax(0,1fr));
+}
+@media (min-width:640px){ .cards{ grid-template-columns: repeat(2,1fr);} }
+@media (min-width:1024px){ .cards{ grid-template-columns: repeat(3,1fr);} }
+
+/* PRICE CHART WRAPPER */
+.chart-card .recharts-cartesian-grid line { stroke: var(--chart-grid); }
+.chart-card .recharts-legend-item-text,
+.chart-card .recharts-tooltip-wrapper,
+.chart-card .recharts-default-tooltip { color: var(--text) !important; }
